@@ -36,11 +36,10 @@ function App() {
   })
   return (
     <div className="App">
-      <p>Current letter just typed</p>
-      <p class='space'>{notTyped}</p> 
-      <p class='space'><span class='nunito'>{typed}</span></p>
-      <p class='nunito'>{littleSentence}</p> 
-      <p>Hello</p>
+      <p>Please type the following command</p>
+      <code type='javascript'>
+      <p><span class='space' style={{color: 'green'}}>{typed}</span><span class='space' style={{color: 'red'}}>{notTyped}</span></p> 
+      </code>
     </div>
   );
 }
