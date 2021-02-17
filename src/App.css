@@ -5,6 +5,8 @@
 :root {
   --nunito: 'Nunito Sans', sans-serif;
   --space: 'Space Mono', monospace;
+  --green: #4BB543;
+  --red: #F51010;
 }
 
 .space {
@@ -13,4 +15,11 @@
 
 .nunito {
   font-family: var(--nunito);
+}
+
+.green {
+  color: var(--green);
+}
+.red {
+  color: var(--red); 
 }
