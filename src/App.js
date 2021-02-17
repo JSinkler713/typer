@@ -4,7 +4,7 @@ import useTypingCheck from './hooks/useTypingCheck';
 
 
 function App() {
-  const [keydown, currentIndex, typed, notTyped, numCorrect] = useTypingCheck()
+  const [keydown, endingNum, typed, notTyped, numCorrect] = useTypingCheck()
 
   return (
     <div className="App">
