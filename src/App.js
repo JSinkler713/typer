@@ -9,14 +9,18 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [typed, setTyped] = useState([])
   const [notTyped, setNotTyped] = useState(littleSentenceArray)
+  const [numCorrect, setNumCorrect] = useState(0)
   const downHandled = (e) => {
     setKeyDown(e.key)
     if(e.key === littleSentence[currentIndex]) {
       //move to typed
       setTyped( [...typed, e.key])
       //update not typed
-      const wasTyped = [...typed]
-      const newTyped = wasTyped.slice(1, wasTyped.length - 1)
+      const newTyped = littleSentenceArray.slice(numCorrect+ 1, littleSentenceArray.length)
+      setNumCorrect(numCorrect + 1)
+      console.log('***********************')
+      console.log(newTyped)
+      console.log('***********************')
       setNotTyped(newTyped)
       //increase the index
       setCurrentIndex(currentIndex + 1)
@@ -33,9 +37,9 @@ function App() {
   return (
     <div className="App">
       <p>Current letter just typed</p>
-      <p>{littleSentence}</p> 
-      <p>{typed}</p> 
-      <p>{keydown}</p>
+      <p class='space'>{notTyped}</p> 
+      <p class='space'><span class='nunito'>{typed}</span></p>
+      <p class='nunito'>{littleSentence}</p> 
       <p>Hello</p>
     </div>
   );
