@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <p>Please type the following command</p>
       <code type='javascript'>
-      <p><code class='space' style={{color: 'green'}}>{typed}</code><code class='space' style={{color: 'red'}}>{notTyped}</code></p> 
+      <p><code className='space' style={{color: 'green'}}>{typed}</code><code className='space' style={{color: 'red'}}>{notTyped}</code></p> 
       </code>
     </div>
   );
