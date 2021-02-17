@@ -4,13 +4,15 @@ import useTypingCheck from './hooks/useTypingCheck';
 
 
 function App() {
-  const [keydown, endingNum, typed, notTyped, numCorrect] = useTypingCheck()
+  const [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets] = useTypingCheck()
 
+  const doneSnippetParagraphs = doneSnippets.map(snippet => <p className='space green'>{snippet}</p>)
   return (
     <div className="App">
-      <p>Please type the following command</p>
+      <h1 className='nunito'>Welcome to typer</h1>
       <code type='javascript'>
-      <p><code className='space' style={{color: 'green'}}>{typed}</code><code className='space' style={{color: 'red'}}>{notTyped}</code></p> 
+        { doneSnippets.length ? doneSnippetParagraphs : ''}
+        <p><code className='space green'>{typed}</code><code className='space red'>{notTyped}</code></p> 
       </code>
     </div>
   );
