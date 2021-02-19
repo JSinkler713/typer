@@ -10,10 +10,8 @@ function App() {
   return (
     <div className="App">
       <h1 className='nunito'>Welcome to typer</h1>
-      <code type='javascript'>
         { doneSnippets.length ? doneSnippetParagraphs : ''}
         <p><code className='space green'>{typed}</code><code className='space red'>{notTyped}</code></p> 
-      </code>
     </div>
   );
 }
