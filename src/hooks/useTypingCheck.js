@@ -44,6 +44,9 @@ const useTypingCheck = ()=> {
         setSnippetIndex(snippetIndex + 1)
         setLittleSentence(snippets[snippetIndex+1].text)
       } else {
+        setTyped([])
+        setNotTyped([])
+
         console.log('got through all of them')
       }
     }
