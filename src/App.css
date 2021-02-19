@@ -8,6 +8,8 @@
   --space: 'Space Mono', monospace;
   --green: #4BB543;
   --red: #F51010;
+  --code-gray: #F5F5F5;
+  --terminal-black: #05080E;
   /* Perfect 4th credit type-scale */
   --headline-jumbo: 4.209rem;
   --headline-1: 3.157rem;
@@ -26,6 +28,13 @@
 .nunito {
   font-family: var(--nunito);
   font-size: var(--headline-jumbo);
+}
+
+.typed {
+  background-color: var(--code-gray);
+}
+.not-typed {
+  background-color: var(--terminal-black);
 }
 
 .green {
