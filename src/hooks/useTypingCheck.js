@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from 'react'; 
-import snippets from '../data/snippets.js'
-import reactFile from '../files/useTypingCheck.js'
+import snippets from '../data/snippets.js';
+import cleanupWhitespace from './cleanupWhitespace';
 
 console.log(snippets)
 
@@ -10,6 +10,7 @@ const useTypingCheck = ()=> {
   const [littleSentence, setLittleSentence] = useState('')
   const [snippetIndex, setSnippetIndex] = useState(0)
   const [doneSnippets, setDoneSnippets] = useState([])
+  const [spaces, setSpaces] = useState(0)
 
   const [keydown, setKeyDown] = useState()
   const [endingNum, setEndingNum] = useState(100)
@@ -27,8 +28,8 @@ const useTypingCheck = ()=> {
     }
   }
 
-  const turnToText = (file)=> {
-    fetch('https://res.cloudinary.com/dbbthq6ra/raw/upload/v1613927137/useTypingCheck_rrttoi.js')
+  const turnToText = ()=> {
+    fetch('https://res.cloudinary.com/dbbthq6ra/raw/upload/v1613944469/BatteryHookContainer_zagomo.jsx')
       .then(file=> file.text())
       .then(resultingText=> {
         console.log(resultingText)
@@ -54,7 +55,7 @@ const useTypingCheck = ()=> {
   })
   useEffect(()=> {
     // updates snippets, littleSentence, and endingNum
-    turnToText(reactFile)
+    turnToText()
   }, [])
 
   useEffect(()=> {
@@ -66,7 +67,15 @@ const useTypingCheck = ()=> {
       if (snippetIndex + 1 < snippets.length) {
         // update to next snippet if they are there
         setSnippetIndex(snippetIndex + 1)
-        setLittleSentence(snippets[snippetIndex+1])
+
+        //clean up beginning spaces
+        const [cleanedLine, count] = cleanupWhitespace(snippets[snippetIndex+1])
+          console.log('***********************')
+          console.log(cleanedLine, count)
+          console.log('***********************')
+        setLittleSentence(cleanedLine)
+        setSpaces(count)
+
       } else {
         setTyped([])
         setNotTyped([])
@@ -78,9 +87,21 @@ const useTypingCheck = ()=> {
   useEffect(()=> {
     // if littleSentence updates call this
     if (snippets.length > 0) {
-      setTyped([])
+        if (spaces) {
+          //add extra spaces to front of typed
+          let extraSpaces = (' ').repeat(spaces)
+          console.log('beginning spaces')
+          console.log(extraSpaces)
+          let arrayOfSpaces = extraSpaces.split('')
+          console.log(arrayOfSpaces)
+          console.log('end of beginning spaces')
+          console.log('four spaces above')
+          setTyped([...arrayOfSpaces])
+        } else {
+        setTyped([])
+        }
       setNotTyped(littleSentence.split())
-      setEndingNum(snippets[snippetIndex].length)
+      setEndingNum(littleSentence.length)
     }
   }, [littleSentence, setLittleSentence])
 
