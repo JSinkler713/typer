@@ -10,8 +10,8 @@ const useTypingCheck = ()=> {
   const [littleSentence, setLittleSentence] = useState('')
   const [snippetIndex, setSnippetIndex] = useState(0)
   const [doneSnippets, setDoneSnippets] = useState([])
-  const [spaces, setSpaces] = useState(0)
 
+  const [spaces, setSpaces] = useState(0)
   const [keydown, setKeyDown] = useState()
   const [endingNum, setEndingNum] = useState(100)
   const [typed, setTyped] = useState([])
@@ -62,7 +62,8 @@ const useTypingCheck = ()=> {
     if (numCorrect == endingNum) {
       // then we got to the end of the current string
       // reset
-      setDoneSnippets([ ...doneSnippets, littleSentence])
+      // add back in spaces, stored in spaces
+      setDoneSnippets([ ...doneSnippets, {littleSentence, spaces}])
       setNumCorrect(0)
       if (snippetIndex + 1 < snippets.length) {
         // update to next snippet if they are there
