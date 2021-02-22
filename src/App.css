@@ -1,6 +1,6 @@
 .App {
   margin: 0 40px;
-  text-align: center;
+  text-align: left;
 }
 
 :root {
@@ -19,6 +19,14 @@
   --body-small: .75rem;
 }
 
+.whitespace {
+  display: inline-block;
+  width: 13px;
+  background-color: var(--code-gray);
+}
+.done {
+  background-color: var(--code-gray);
+}
 
 .space {
   font-family: var(--space);
