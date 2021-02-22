@@ -106,7 +106,7 @@ const useTypingCheck = ()=> {
     }
   }, [littleSentence, setLittleSentence])
 
-  return [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets]
+  return [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces]
 
 } 
 export default useTypingCheck;
