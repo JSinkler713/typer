@@ -1,8 +1,15 @@
-.App {
-  margin: 0 40px;
-  text-align: left;
+* {
+  margin-block: 0px;
+  box-sizing: border-box;
 }
-
+.App {
+  margin: 20px 40px;
+  text-align: center;
+  display:flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: center;
+}
 :root {
   --nunito: 'Nunito Sans', sans-serif;
   --space: 'Space Mono', monospace;
@@ -19,6 +26,16 @@
   --body-small: .75rem;
 }
 
+.main-content {
+  max-width: 900px;
+  min-width: 800px;
+  padding:5px;
+  align-items: left; 
+  background-color: var(--code-gray);
+} 
+.main-content p {
+  text-align:left;
+}
 .whitespace {
   display: inline-block;
   width: 13px;

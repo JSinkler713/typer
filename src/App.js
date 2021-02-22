@@ -33,8 +33,10 @@ function App() {
   return (
     <div className="App">
       <h1 className='nunito'>Welcome to typer</h1>
+      <main className='main-content'>
         { doneSnippets.length ? doneSnippetParagraphs : ''}
       <p className='done'><code className='space green typed'>{spaces ? leaders :''}{typed}</code><code className='space red not-typed'>{notTyped}</code></p> 
+      </main>
     </div>
   );
 }
