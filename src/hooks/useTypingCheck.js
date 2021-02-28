@@ -17,6 +17,7 @@ const useTypingCheck = ()=> {
   const [typed, setTyped] = useState([])
   const [notTyped, setNotTyped] = useState(littleSentence.split())
   const [numCorrect, setNumCorrect] = useState(0)
+  const [done, setDone] = useState(false)
 
   const downHandled = (e) => {
     setKeyDown(e.key)
@@ -80,6 +81,7 @@ const useTypingCheck = ()=> {
       } else {
         setTyped([])
         setNotTyped([])
+        setDone(true)
         console.log('got through all of them')
       }
     }
@@ -106,7 +108,7 @@ const useTypingCheck = ()=> {
     }
   }, [littleSentence, setLittleSentence])
 
-  return [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces]
+  return [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces, done]
 
 } 
 export default useTypingCheck;
