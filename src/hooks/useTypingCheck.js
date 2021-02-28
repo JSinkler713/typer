@@ -29,8 +29,8 @@ const useTypingCheck = ()=> {
     }
   }
 
-  const turnToText = ()=> {
-    fetch('https://res.cloudinary.com/dbbthq6ra/raw/upload/v1613944469/BatteryHookContainer_zagomo.jsx')
+  const turnToText = (url)=> {
+    fetch(url)
       .then(file=> file.text())
       .then(resultingText=> {
         console.log(resultingText)
@@ -54,13 +54,17 @@ const useTypingCheck = ()=> {
     window.removeEventListener('keydown', downHandled)
     }
   })
+
   useEffect(()=> {
     // updates snippets, littleSentence, and endingNum
-    turnToText()
+    //choose random snippet
+    let cloudinaryUrls = ['https://res.cloudinary.com/dbbthq6ra/raw/upload/v1614474949/index_rlsl7b.js', 'https://res.cloudinary.com/dbbthq6ra/raw/upload/v1614472075/mapIt_h4hxv2.py', 'https://res.cloudinary.com/dbbthq6ra/raw/upload/v1614474760/ApiFetch_ieyhbb.js', 'https://res.cloudinary.com/dbbthq6ra/raw/upload/v1614474891/todo_laepmu.js']
+    let randomUrl = cloudinaryUrls[Math.floor(Math.random()*cloudinaryUrls.length)]
+    turnToText(randomUrl)
   }, [])
 
   useEffect(()=> {
-    if (numCorrect == endingNum) {
+        if (numCorrect == endingNum) {
       // then we got to the end of the current string
       // reset
       // add back in spaces, stored in spaces
@@ -77,12 +81,11 @@ const useTypingCheck = ()=> {
           console.log('***********************')
         setLittleSentence(cleanedLine)
         setSpaces(count)
-
       } else {
-        setTyped([])
-        setNotTyped([])
-        setDone(true)
-        console.log('got through all of them')
+          setTyped([])
+          setNotTyped([])
+          setDone(true)
+          console.log('got through all of them')
       }
     }
   }, [numCorrect, endingNum])
@@ -93,12 +96,7 @@ const useTypingCheck = ()=> {
         if (spaces) {
           //add extra spaces to front of typed
           let extraSpaces = (' ').repeat(spaces)
-          console.log('beginning spaces')
-          console.log(extraSpaces)
           let arrayOfSpaces = extraSpaces.split('')
-          console.log(arrayOfSpaces)
-          console.log('end of beginning spaces')
-          console.log('four spaces above')
           setTyped([...arrayOfSpaces])
         } else {
         setTyped([])
