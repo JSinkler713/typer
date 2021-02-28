@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect, useRef } from 'react'
 import useTypingCheck from './hooks/useTypingCheck';
 import Space from './components/Space';
+import Timer from './components/Timer';
 
 const scroller = (ref)=> {
   console.log(ref.current)
@@ -12,13 +13,20 @@ const scroller = (ref)=> {
 
 
 function App() {
-  const [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces] = useTypingCheck()
+  const [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces, done] = useTypingCheck()
   const newRef = useRef()
 
   useEffect(()=> {
     //change when doneSnippets
     scroller(newRef)
   }, [doneSnippets])
+
+  useEffect(()=> {
+    if (done) {
+      // stop timer
+      console.log('its really done')
+    }
+  },[done])
 
 
   const doneSnippetParagraphs = doneSnippets.map(snippet =>{
@@ -48,6 +56,7 @@ function App() {
     <div className="App">
       <div>
         <h1 className='nunito'>Welcome to typer</h1>
+        <Timer done={done}/>
         <main className='main-content'>
           { doneSnippets.length ? doneSnippetParagraphs : ''}
           <p className='done' ref={newRef} ><code className='space green typed'>{spaces ? leaders :''}{typed}</code><code className='space red not-typed'>{notTyped}</code></p> 

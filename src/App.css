@@ -72,10 +72,12 @@
 }
 footer {
   height: 80px;
+  background-color: #36434f;
+  color: #f2f2f3;
+  font-family: var(--nunito);
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-right: 40px;
-  background-color: steelblue;
 }
