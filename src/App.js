@@ -5,6 +5,7 @@ import Space from './components/Space';
 import Timer from './components/Timer';
 import Wpm from './components/Wpm';
 import calcTypingStats from './utils/calcTypingStats';
+import calcTop from './utils/calcTop';
 
 const scroller = (ref)=> {
   console.log(ref.current)
@@ -73,6 +74,8 @@ function App() {
     console.log(leaders)
   }
 
+  let top = calcTop(doneSnippets.length)
+
 
   return (
     <div className="App">
@@ -82,8 +85,10 @@ function App() {
         {percentageCorrect}
         {wpm}
         <main className='main-content'>
+          <div className='writing-block' style={{ top: top }}>
           { doneSnippets.length ? doneSnippetParagraphs : ''}
           <p className='done' ref={newRef} ><code className='space green typed'>{spaces ? leaders :''}{typed}</code><code className='space red not-typed'>{notTyped}</code></p> 
+          </div>
         </main>
       </div>
       <footer>

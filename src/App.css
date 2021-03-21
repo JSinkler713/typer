@@ -39,12 +39,22 @@ h1 {
  * so that user is not typing at bottom of page
  */
 .main-content {
+  max-height: 270px;
+  padding-bottom: 20px;
   max-width: 900px;
   min-width: 800px;
   padding:5px;
   align-items: left; 
   background-color: var(--code-gray);
+  overflow-y: scroll;
 } 
+.writing-block {
+  position: relative;
+  top: 0px;
+}
+.writing-block p {
+  text-align: left;
+}
 .main-content p {
   text-align:left;
 }
