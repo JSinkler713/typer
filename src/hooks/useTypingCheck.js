@@ -20,10 +20,14 @@ const useTypingCheck = ()=> {
   const [numCorrect, setNumCorrect] = useState(0)
   const [done, setDone] = useState(false)
   const [keepMoving, setKeepMoving] = useState(false)
+  const [totalCorrectChars, setTotalCorrectChars] = useState(0)
+  const [totalTypedChars, setTotalTypedChars] = useState(0)
 
   const downHandled = (e) => {
     setKeyDown(e.key)
+    setTotalTypedChars(totalTypedChars + 1)
     if(e.key === littleSentence[numCorrect]) {
+      setTotalCorrectChars(totalCorrectChars + 1)
       setTyped([...typed, e.key])
       const newTyped = littleSentence.slice(numCorrect+ 1, littleSentence.length)
       setNumCorrect(numCorrect + 1)
@@ -96,7 +100,6 @@ const useTypingCheck = ()=> {
         setLittleSentence('')
         setKeepMoving(!keepMoving)
         // need to move to the next line
-        
       } else {
       // clean up beginning spaces for next line
         const [cleanedLine, count] = cleanupWhitespace(snippets[snippetIndex])
@@ -124,7 +127,7 @@ const useTypingCheck = ()=> {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [littleSentence, setLittleSentence])
 
-  return [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces, done]
+  return [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces, done, totalCorrectChars, totalTypedChars]
 
 } 
 export default useTypingCheck;
