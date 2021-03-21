@@ -31,7 +31,7 @@ const Timer = (props)=> {
 
   return(
     <div className='Timer'>
-      <p>{time}</p>
+      <span>{Math.floor(time / 60)}:{Math.floor((time % 60)/10)}{time % 10}</span>
     </div>
   )
 }

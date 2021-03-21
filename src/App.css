@@ -91,6 +91,19 @@ h1 {
 .red {
   color: var(--green); 
 }
+.Timer {
+  font-family: var(--nunito);
+  font-size: var(--body-large);
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 3px 8px;
+
+  
+}
+
 footer {
   height: 80px;
   background-color: #36434f;
