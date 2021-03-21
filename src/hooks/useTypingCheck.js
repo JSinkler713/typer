@@ -1,6 +1,7 @@
 import {useState, useEffect, useContext} from 'react'; 
 import snippets from '../data/snippets.js';
 import cleanupWhitespace from './cleanupWhitespace';
+import handleEmptyLine from './handleEmptyLine';
 
 console.log(snippets)
 
@@ -18,6 +19,7 @@ const useTypingCheck = ()=> {
   const [notTyped, setNotTyped] = useState(littleSentence.split())
   const [numCorrect, setNumCorrect] = useState(0)
   const [done, setDone] = useState(false)
+  const [keepMoving, setKeepMoving] = useState(false)
 
   const downHandled = (e) => {
     setKeyDown(e.key)
@@ -64,31 +66,46 @@ const useTypingCheck = ()=> {
   }, [])
 
   useEffect(()=> {
-        if (numCorrect == endingNum) {
+      if (numCorrect == endingNum) {
       // then we got to the end of the current string
       // reset
       // add back in spaces, stored in spaces
       setDoneSnippets([ ...doneSnippets, {littleSentence, spaces}])
       setNumCorrect(0)
       if (snippetIndex + 1 < snippets.length) {
-        // update to next snippet if they are there
+        // update to next snippet 
+        console.log('go to next snippet')
         setSnippetIndex(snippetIndex + 1)
-
-        //clean up beginning spaces
-        const [cleanedLine, count] = cleanupWhitespace(snippets[snippetIndex+1])
-          console.log('***********************')
-          console.log(cleanedLine, count)
-          console.log('***********************')
-        setLittleSentence(cleanedLine)
-        setSpaces(count)
       } else {
-          setTyped([])
-          setNotTyped([])
-          setDone(true)
-          console.log('got through all of them')
+        setTyped([])
+        setNotTyped([])
+        setDone(true)
+        console.log('got through all of them')
       }
     }
-  }, [numCorrect, endingNum])
+  }, [numCorrect, endingNum, keepMoving])
+  
+  useEffect(()=> {
+    //when the snippet index is increased
+    if (snippets[snippetIndex] !== undefined) {
+      const itIsEmpty = handleEmptyLine(snippets[snippetIndex])
+      if (itIsEmpty) {
+        console.log('yup this is empty')
+        setNumCorrect(0)
+        setEndingNum(0)
+        setLittleSentence('')
+        setKeepMoving(!keepMoving)
+        // need to move to the next line
+        
+      } else {
+      // clean up beginning spaces for next line
+        const [cleanedLine, count] = cleanupWhitespace(snippets[snippetIndex])
+        console.log(cleanedLine, count)
+        setSpaces(count)
+        setLittleSentence(cleanedLine)
+      }
+    }
+  }, [snippetIndex, setSnippetIndex])
 
   useEffect(()=> {
     // if littleSentence updates call this
@@ -104,6 +121,7 @@ const useTypingCheck = ()=> {
       setNotTyped(littleSentence.split())
       setEndingNum(littleSentence.length)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [littleSentence, setLittleSentence])
 
   return [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces, done]
