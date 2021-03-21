@@ -5,8 +5,11 @@
 html {
   font-size: 18px;
 }
+h1 {
+  margin: 10px 0px;
+}
 .App {
-  margin: 20px 40px 0px 40px;
+  margin: 0px 40px;
   text-align: center;
   display:flex;
   gap: 30px;
@@ -31,6 +34,10 @@ html {
   --body-small: .75rem;
 }
 
+/* TODO: position main content relative
+ * use negavitive top, to bring text up after 5 lines,
+ * so that user is not typing at bottom of page
+ */
 .main-content {
   max-width: 900px;
   min-width: 800px;
@@ -48,7 +55,7 @@ html {
 }
 .done {
   background-color: var(--code-gray);
-  min-height: 32px;
+  min-height: 26px;
 }
 
 .space {
@@ -62,17 +69,17 @@ html {
 }
 
 .typed {
-  background-color: var(--code-gray);
+  background-color: #fff;
 }
 .not-typed {
   background-color: var(--terminal-black);
 }
 
 .green {
-  color: var(--green);
+  color: #000;
 }
 .red {
-  color: var(--red); 
+  color: var(--green); 
 }
 footer {
   height: 80px;
