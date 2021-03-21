@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react'
 import useTypingCheck from './hooks/useTypingCheck';
 import Space from './components/Space';
 import Timer from './components/Timer';
+import Wpm from './components/Wpm';
+import calcTypingStats from './utils/calcTypingStats';
 
 const scroller = (ref)=> {
   console.log(ref.current)
@@ -13,12 +15,23 @@ const scroller = (ref)=> {
 
 
 function App() {
-  const [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces, done] = useTypingCheck()
+  const [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces, done, totalCorrectChars, totalTypedChars] = useTypingCheck()
+
+  const [time, setTime] = useState(0)
+  const [wpm, setWpm] = useState('')
+  const [percentageCorrect, setPercentageCorrect] = useState('')
+  const updateTime = (currTime)=> {
+    setTime(currTime)
+  }
   const newRef = useRef()
 
   useEffect(()=> {
     //change when doneSnippets
     scroller(newRef)
+    // also show wpm
+    const [percentageStat, WPMStat] =   calcTypingStats(totalCorrectChars, totalTypedChars, time)
+    setWpm(WPMStat)
+    setPercentageCorrect(percentageStat)
   }, [doneSnippets])
 
   useEffect(()=> {
@@ -56,7 +69,9 @@ function App() {
     <div className="App">
       <div>
         <h1 className='nunito'>Welcome to typer</h1>
-        <Timer done={done}/>
+        <Timer done={done} updateTime={updateTime}/>
+        {percentageCorrect}
+        {wpm}
         <main className='main-content'>
           { doneSnippets.length ? doneSnippetParagraphs : ''}
           <p className='done' ref={newRef} ><code className='space green typed'>{spaces ? leaders :''}{typed}</code><code className='space red not-typed'>{notTyped}</code></p> 
