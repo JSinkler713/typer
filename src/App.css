@@ -45,6 +45,7 @@
 }
 .done {
   background-color: var(--code-gray);
+  min-height: 32px;
 }
 
 .space {
