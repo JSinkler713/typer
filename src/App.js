@@ -9,7 +9,11 @@ import calcTypingStats from './utils/calcTypingStats';
 const scroller = (ref)=> {
   console.log(ref.current)
   console.log(ref.current.offsetTop)
-  window.scrollTo(0, ref.current.offsetTop)
+  window.scrollTo({
+    top: ref.current.offsetTop,
+    left: 0,
+    behavior: 'smooth'
+  })
 }
 
 
@@ -37,6 +41,11 @@ function App() {
   useEffect(()=> {
     if (done) {
       // stop timer
+      window.scrollTo({
+        top:0,
+        left:0,
+        behavior: 'smooth'
+      })
       console.log('its really done')
     }
   },[done])
