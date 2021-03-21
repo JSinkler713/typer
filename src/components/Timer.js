@@ -10,6 +10,8 @@ const Timer = (props)=> {
     const startTimer = setInterval(()=> {
       console.log('updating time')
       timeRef.current++
+      // pass it back up to App
+      props.updateTime(timeRef.current)
       setTime(timeRef.current)
     }, 1000)
     setIntervalId(startTimer)
