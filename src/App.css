@@ -2,6 +2,9 @@
   margin-block: 0px;
   box-sizing: border-box;
 }
+html {
+  font-size: 18px;
+}
 .App {
   margin: 20px 40px 0px 40px;
   text-align: center;
@@ -50,7 +53,7 @@
 
 .space {
   font-family: var(--space);
-  font-size: var(--body-large);
+  font-size: var(--body-base);
 }
 
 .nunito {
