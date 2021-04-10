@@ -39,11 +39,10 @@ h1 {
  * so that user is not typing at bottom of page
  */
 .main-content {
-  max-height: 270px;
-  padding-bottom: 20px;
+  max-height: calc(26px * 7);
   max-width: 900px;
   min-width: 800px;
-  padding:5px;
+  padding: 26px 5px;
   align-items: left; 
   background-color: var(--code-gray);
   overflow-y: scroll;
@@ -54,9 +53,6 @@ h1 {
 }
 .writing-block p {
   text-align: left;
-}
-.main-content p {
-  text-align:left;
 }
 .whitespace {
   display: inline-block;
@@ -114,4 +110,13 @@ footer {
   align-items: center;
   justify-content: flex-end;
   padding-right: 40px;
+}
+
+/* Not sure I like this */
+@media (max-width: 900px) {
+  .Timer {
+    top: 400px;
+    transition: top 1s ease;
+  }
+
 }
