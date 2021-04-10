@@ -82,8 +82,16 @@ function App() {
       <div>
         <h1 className='nunito'>Welcome to typer</h1>
         <Timer done={done} updateTime={updateTime}/>
-        {percentageCorrect}
-        {wpm}
+        <div className='stats'>
+          {
+          doneSnippets.length ?
+            <>
+          <p>{percentageCorrect}</p>
+          <p>{wpm}</p>
+            </>
+          : ''
+          }
+        </div>
         <main className='main-content'>
           <div className='writing-block' style={{ top: top }}>
           { doneSnippets.length ? doneSnippetParagraphs : ''}
