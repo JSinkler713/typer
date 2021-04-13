@@ -5,6 +5,7 @@ import useTypingCheck from './hooks/useTypingCheck';
 import Space from './components/Space';
 import Timer from './components/Timer';
 import Wpm from './components/Wpm';
+import ResetButton from './components/ResetButton';
 import calcTypingStats from './utils/calcTypingStats';
 import calcTop from './utils/calcTop';
 
@@ -105,6 +106,7 @@ function App() {
           <p className='done' ref={newRef} ><code className='space green typed'>{spaces ? leaders :''}{typed}</code><code className='space red not-typed'>{notTyped}</code></p> 
           </div>
         </main>
+          { done ? <ResetButton /> : ''}
       </div>
       <footer>
         JSinkler
