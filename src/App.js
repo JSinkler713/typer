@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react'
+import styled from 'styled-components'
 import useTypingCheck from './hooks/useTypingCheck';
 import Space from './components/Space';
 import Timer from './components/Timer';
@@ -16,6 +17,12 @@ const scroller = (ref)=> {
     behavior: 'smooth'
   })
 }
+
+const Stats = styled.div`
+  border: 2px solid black;
+  background: firebrick;
+  color: white;
+  `
 
 
 
@@ -82,7 +89,7 @@ function App() {
       <div>
         <h1 className='nunito'>Welcome to typer</h1>
         <Timer done={done} updateTime={updateTime}/>
-        <div className='stats'>
+        <Stats>
           {
           doneSnippets.length ?
             <>
@@ -91,7 +98,7 @@ function App() {
             </>
           : ''
           }
-        </div>
+        </Stats>
         <main className='main-content'>
           <div className='writing-block' style={{ top: top }}>
           { doneSnippets.length ? doneSnippetParagraphs : ''}
