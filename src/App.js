@@ -30,6 +30,7 @@ const Stats = styled.div`
 function App() {
   const [keydown, endingNum, typed, notTyped, numCorrect, doneSnippets, spaces, done, totalCorrectChars, totalTypedChars] = useTypingCheck()
 
+  const [startTime, setStartTime] = useState(false)
   const [time, setTime] = useState(0)
   const [wpm, setWpm] = useState('')
   const [percentageCorrect, setPercentageCorrect] = useState('')
@@ -37,6 +38,14 @@ function App() {
     setTime(currTime)
   }
   const newRef = useRef()
+
+  useEffect(()=> {
+    //on first keydown set timer
+    console.log('total typed Chars', totalTypedChars)
+    if (!startTime && totalTypedChars == 1) {
+      setStartTime(true)
+    }
+  }, [totalTypedChars])
 
   useEffect(()=> {
     //change when doneSnippets
@@ -89,7 +98,7 @@ function App() {
     <div className="App">
       <div>
         <h1 className='nunito'>Welcome to typer</h1>
-        <Timer done={done} updateTime={updateTime}/>
+        <Timer done={done} updateTime={updateTime} startTime={startTime}/>
         <Stats>
           {
           doneSnippets.length ?
