@@ -1,10 +1,7 @@
 import {useState, useEffect, useContext} from 'react'; 
-import snippets from '../data/snippets.js';
 import cleanupWhitespace from './cleanupWhitespace';
 import handleEmptyLine from './handleEmptyLine';
-
-console.log(snippets)
-
+import cloudinaryUrls from '../data/cloudinaryUrls';
 
 const useTypingCheck = ()=> { 
   const [snippets, setSnippets] = useState([])
@@ -64,9 +61,8 @@ const useTypingCheck = ()=> {
   useEffect(()=> {
     // updates snippets, littleSentence, and endingNum
     //choose random snippet
-    let cloudinaryUrls = ['https://res.cloudinary.com/dbbthq6ra/raw/upload/v1614474949/index_rlsl7b.js', 'https://res.cloudinary.com/dbbthq6ra/raw/upload/v1614472075/mapIt_h4hxv2.py', 'https://res.cloudinary.com/dbbthq6ra/raw/upload/v1614474760/ApiFetch_ieyhbb.js', 'https://res.cloudinary.com/dbbthq6ra/raw/upload/v1614474891/todo_laepmu.js']
-    let randomUrl = cloudinaryUrls[Math.floor(Math.random()*cloudinaryUrls.length)]
-    turnToText(randomUrl)
+    let randomUrlToFetch = cloudinaryUrls[Math.floor(Math.random()*cloudinaryUrls.length)]
+    turnToText(randomUrlToFetch)
   }, [])
 
   useEffect(()=> {
